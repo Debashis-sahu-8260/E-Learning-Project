@@ -6,11 +6,69 @@ import { Navigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ColorButton } from "../ProdCard/popperprodcard";
+import GoogleIcon from "@mui/icons-material/Google";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 const Signup = () => {
   const [userdata, setUser] = useState({ name: "", email: "", password: "" });
   const { user, loading, error } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
+
+  const login = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        console.log("Google login successful!");
+
+        // Extract access token from response
+        const { access_token } = tokenResponse;
+
+        // Fetch user info from Google using the access token
+        const response = await axios.get(
+          "https://www.googleapis.com/oauth2/v1/userinfo",
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          }
+        );
+
+        // Extract name and email from the response
+        const { name, email } = response.data;
+        const googleUserData = {
+          name,
+          email,
+          password: access_token, // Using access token as a placeholder for password
+        };
+
+        console.log("Data to be sent for signup:", googleUserData);
+
+        // Make the signup request to your backend
+        const URL = "https://udemy-vr4p.onrender.com/join/signup-popup";
+        const signupResponse = await axios.post(URL, googleUserData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        console.log("Signup response:", signupResponse.data);
+
+        // Dispatch the action with the received data if the signup was successful
+        dispatch(authFunction(googleUserData, URL));
+        if (user.token) {
+          return <Navigate to={"/join/login-popup"} />;
+        }
+      } catch (error) {
+        console.error(
+          "Google login error or signup error:",
+          error.response?.data || error.message
+        );
+      }
+    },
+    onError: (error) => {
+      console.error("Google login failed:", error);
+    },
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,14 +115,6 @@ const Signup = () => {
             className={style.signup_pw}
           />
 
-          <div className={style.checkboxDiv}>
-            <input type="checkbox" className={style.signup_checkbox} />
-            <label htmlFor="signup_checkbox">
-              Exciting discounts
-              recommendations
-            </label>
-          </div>
-
           <ColorButton
             onClick={() => {
               const URL = "https://udemy-vr4p.onrender.com/join/signup-popup";
@@ -80,13 +130,18 @@ const Signup = () => {
             )}
           </ColorButton>
 
-          <h6>
-            <a href="#">Terms</a> and{" "}
-            <a href="#">privacy policy</a>
+          <h6 style={{ marginTop: "10px" }}>
+            <a href="#">Terms</a> and <a href="#">privacy policy</a>
           </h6>
           <div className={style.hv_account}>
             Already have an Account? <a href="/join/login-popup">Log in</a>
           </div>
+
+          <button onClick={() => login()} className={style.google_button}>
+            <GoogleIcon style={{ marginRight: "8px" }} /> 
+            Sign in with Google 🚀
+          </button>
+
         </div>
       </div>
     </div>

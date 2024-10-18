@@ -103,7 +103,7 @@ nav > button,
   height: 2.6rem;
   padding: 0 1.1rem;
   margin: 0.3rem;
-  background-color: #eb2020;
+  background-color: #424bff;
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.02rem;
@@ -389,5 +389,5 @@ nav > button,
 }
 
 .LogBtn{
-  background: #eb2020;
+  background: #424bff;
 }
