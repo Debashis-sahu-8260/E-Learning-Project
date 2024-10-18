@@ -1,7 +1,7 @@
 import React from 'react';
-import style from './about.module.css';
+import style from './Contact.module.css';
 
-const About = () => {
+const Contact = () => {
   return (
     <section className={style.contact}>
       <div className={style.content}>
@@ -19,7 +19,7 @@ const About = () => {
           </div>
           <div className={style.box}>
             <div className={style.icon}>
-              
+
             </div>
             <div className={style.text}>
               <h3>Phone</h3>
@@ -28,7 +28,7 @@ const About = () => {
           </div>
           <div className={style.box}>
             <div className={style.icon}>
-              
+
             </div>
             <div className={style.text}>
               <h3>Email</h3>
@@ -37,11 +37,8 @@ const About = () => {
           </div>
         </div>
 
-       
-
-      </div>
-       <div className={style.contactForm}>
-          <form style={{marginLeft:"0px"}}>
+        <div className={style.contactForm}>
+          <form style={{ marginLeft: "0px" }}>
             <h2>Send Message</h2>
             <div className={style.inputBox}>
               <input type="text" name="fullName" required="required" />
@@ -60,8 +57,10 @@ const About = () => {
             </div>
           </form>
         </div>
+      </div>
+
     </section>
   );
 };
 
-export default About;
+export default Contact;

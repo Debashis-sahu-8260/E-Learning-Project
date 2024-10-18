@@ -7,16 +7,21 @@
 
 .contact{
     position: relative;
-    min-height: 100vh;
+    min-height: 90vh;
     padding: 50px 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: black;
+    /* background-color: black; */
+    background: url("../../assets/contactPage.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .contact .content {
+    margin-top: -1rem;
     max-width: 800px;
     text-align: center;
 }
@@ -68,14 +73,13 @@
 
 .container .contactInfo .box .text h3{
     font-weight: 500;
-    color: #00bcd4;
+    color: #0d52d2;
 }
 
 .contactForm {
     width: 40%;
     padding: 40px;
     background-color: #fff;
-    margin-left: auto; /* Pushes the form to the right */
 }
 .contactForm h2{
     font-size: 30px;
@@ -97,7 +101,7 @@
     font-size: 16px;
     margin: 10px 0;
     border: none;
-    border-bottom: 2px sol #333;
+    border-bottom: 2px solid #000000;
     outline: none;
     resize: none;
 }
@@ -128,7 +132,7 @@
 
 
 .contactForm .inputBox input[type="submit"]{
-    width: 100px;
+    width: 100%;
     background: #00bcd4;
     color: #fff;
     border: none;

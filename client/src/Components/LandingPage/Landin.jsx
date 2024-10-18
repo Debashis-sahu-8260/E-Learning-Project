@@ -1,5 +1,6 @@
 import "../Header/header.css";
-import banner from "../../assets/background.jpg";
+import banner from "../../assets/generated.jpg";
+import award from "../../assets/bestAward.png";
 import { Link } from "react-router-dom";
 import { ProdCard, SuggestionCard, TechCard } from "../ProdCard/ProdCard";
 import { PopperCard } from "../ProdCard/popperprodcard";
@@ -50,11 +51,13 @@ const Banner = () => {
           <div
             className="bannercard"
             style={{
-              backgroundColor: "#dbdbdbd", 
-              padding: "20px", 
-              borderRadius: "10px", 
+              marginLeft:"3.5rem",
+              marginTop:"4rem",
+              background: "white",
+              padding: "20px",
+              borderRadius: "10px",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Subtle shadow
-              
+
             }}
           >
             {" "}
@@ -67,7 +70,7 @@ const Banner = () => {
             </div>
           </div>
           <div className="bannerdiv">
-            <img src={banner} alt="some" />
+            <img src={banner} alt="img" />
           </div>
         </div>
       </section>

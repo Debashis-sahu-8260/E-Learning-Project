@@ -72,8 +72,8 @@ export const Header = () => {
             <input type="text" placeholder="Search for anything" />
           </div>
           <div>
-            <Link className="linkstyle" to={"/about"}>
-              <span className="nav-span">About</span>
+            <Link className="linkstyle" to={"/Contact"}>
+              <span className="nav-span">Contact Us</span>
             </Link>
           </div>
 
