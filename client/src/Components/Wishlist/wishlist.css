@@ -1,56 +1,35 @@
-
 .wishlistDiv {
-
+  padding: 20px;
 }
 
-.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: black;
-    color: #ccc;
-    height: 150px;
-  }
-  .tab h1 {
-    margin-left: 340px;
-    margin-top: 50px;
-  }
-  .tabs_header {
-      margin-left: 300px;
-  }
-  .tablinks {
-      color: #ccc;
-      text-align: center;
-  }
-  
-  /* Style the buttons inside the tab */
-  .tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-  }
-  
-  /* Change background color of buttons on hover */
-  .tab button:hover {
-      border-bottom: 5px solid #ccc;
-  }
-  
-  /* Create an active/current tablink class */
-  .tab button.active {
-    border-bottom: 5px solid #ccc;
-  }
-  
-  /* Style the tab content */
-  .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-  }
-form{
-      margin-left: 1000px;
-  }
+.tabs_header {
+  margin-bottom: 20px;
+}
+
+.tablinks {
+  padding: 10px 15px;
+  margin-right: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.tablinks.active {
+  background-color: #a435f0;
+  color: white;
+}
+
+.removewish{
+  position: relative;
+  left: 80%;
+  bottom: 86%;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: red;
+  color: #ffffff;
+}
+.removewish:hover{
+  scale: 1.1;
+}

@@ -1,6 +1,6 @@
 .adminContainer {
   display: flex;
-  margin-top: -4rem;
+  margin-top: 0rem;
 }
 
 .drawer {
@@ -13,7 +13,7 @@
 }
 
 .iconColor {
-  color: #f44336; /* Red theme color */
+  color: #0000e2; /* Red theme color */
 }
 
 .mainContent {
@@ -24,7 +24,7 @@
 
 .appBar {
   z-index: 1201;
-  background-color: #f23a2d; /* Red theme color */
+  background-color: #1410df; /* Red theme color */
 }
 
 .title {
@@ -35,6 +35,6 @@
 
 .logoutIcon {
   margin-right: 8px;
-  color: #f44336; /* Red theme color */
+  color: #f61414; /* Red theme color */
 }
 

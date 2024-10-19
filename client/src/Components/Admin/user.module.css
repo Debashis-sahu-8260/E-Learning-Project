@@ -1,19 +1,21 @@
 /* user.module.css */
 
 .container {
-    padding: 20px;
-    background-color: #f5f5f5; /* Light background color */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .title {
-    margin-bottom: 20px; /* Space between title and DataGrid */
-  }
-  
-  .dataGridContainer {
-    width: 100%;
-    background-color: white; /* White background for DataGrid */
-    overflow: hidden; /* Hide overflow */
-  }
-  
+  padding: 20px;
+
+}
+
+.title {
+  margin-bottom: 20px;
+  /* Space between title and DataGrid */
+}
+
+.dataGridContainer {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  width: 94%;
+  background-color: white;
+  /* White background for DataGrid */
+  overflow: hidden;
+  /* Hide overflow */
+}

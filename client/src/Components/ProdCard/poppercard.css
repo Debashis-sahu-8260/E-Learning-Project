@@ -1,73 +1,84 @@
-.poppercard{
-    /* border: 2px solid black; */
-    width: 25rem;
-    /* padding: 1.4rem; */
-    background-color: #fff;
-    box-shadow: 0 0 0 1px #d1d7dc, 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
-    color: #1c1d1f;
+.poppercard {
+    background-color: rgba(199, 199, 199, 0.786);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px; /* Adjust width as needed */
     position: relative;
-    z-index: 1;
-}
-
-.p-title{
-    font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
-    font-weight: 700;
-    letter-spacing: -.04rem;
-    font-size: 1.4rem;
+    transition: transform 0.3s;
+  }
+  
+  .poppercard:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+  }
+  
+  .p-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
     text-decoration: none;
-    color: #1c1d1f;
-    
-}
-.p-date-con, .p-level{
-    font-size: 1rem;
-    color: #1e6055;
-    margin-top: 0.6rem;
-}
-.p-date {
-    margin-left: 0.7rem;
-    font-weight: 700;
-}
-.p-sub{
-    margin-left: 0.7rem;
-    
-}
-.p-desc{
-    margin-top: 0.4rem;
-    font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
-    font-weight: 400;
-    line-height: 1.4;
-    font-size: 1.06rem;
-    letter-spacing: -.05rem;
-    
-}
-.point-con{
+  }
+  
+  .p-date-con {
     display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-top: 0.5rem;
-}
-.highlights{
-    margin-top: 0.5rem;
-    font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
-    font-weight: 400;
-    line-height: 1.4;
-    font-size: 1.01rem;
-    color: #1c1d1f;
-    letter-spacing: -.04rem;
-}
-.heart-cir{
-    border: 1px solid black;
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    color: #000000;
+  }
+  
+  .p-level {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  
+  .p-desc {
+    margin: 10px 0;
+    font-size: 0.95rem;
+    color: #000000;
+  }
+  
+  .highlights {
+    margin: 10px 0;
+  }
+  
+  .point-con {
+    display: flex;
     align-items: center;
-    background-color: transparent;
-    margin-left: 0.6rem;
-}
-.p-btn-div{
- display: flex;
- margin-top: 1rem;
- align-items: center;
-}
+    margin: 5px 0;
+    font-size: 0.9rem;
+  }
+  
+  .point-con p {
+    margin-left: 5px;
+  }
+  
+  .p-btn-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .heart-cir {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #000000;
+    transition: color 0.3s;
+  }
+  
+  .heart-cir:hover {
+    color: #e30000; /* Color on hover */
+    border: #000000 solid 1px;
+  }
+  
+  /* Alert styles */
+  .alert {
+    margin-top: 10px;
+  }
+  .addTo{
+    background-color: blue;
+  }

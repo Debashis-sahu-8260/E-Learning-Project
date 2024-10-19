@@ -33,7 +33,6 @@ app.use("/join", userController);     // User related routes
 app.use("/cart", cartController);     // Cart related routes
 app.use("/wishlist", wishlistController);  // Wishlist related routes
 
-// Auth route with authentication middleware
 app.post("/auth", authenticate, async (req, res) => {
   try {
     return res.status(200).send({ auth: true, user: req.user });
@@ -42,7 +41,6 @@ app.post("/auth", authenticate, async (req, res) => {
   }
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });

@@ -1,0 +1,146 @@
+.container {
+    padding: 10px;
+}
+
+.cardGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+}
+
+.cardCol {
+    flex: 1 1 calc(25% - 20px); /* Calculate width for 4 cards in a row, subtracting gap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 992px) { /* Medium devices (tablets) */
+    .cardCol {
+        flex: 1 1 calc(33.33% - 20px); /* 3 cards in a row */
+    }
+}
+
+@media (max-width: 768px) { /* Small devices (phones) */
+    .cardCol {
+        flex: 1 1 calc(50% - 20px); /* 2 cards in a row */
+    }
+}
+
+@media (max-width: 576px) { /* Extra small devices */
+    .cardCol {
+        flex: 1 1 100%; /* 1 card in a row */
+    }
+}
+
+.prodcard {
+    margin-left: 16rem;
+    width: 100%;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.prodcard:hover {
+    transform: translateY(-5px);
+}
+
+.prodimg {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.cardTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.author {
+    color: #555;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.ratingDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.rateNum {
+    font-size: 14px;
+    margin-right: 5px;
+    color: #ff9800;
+}
+
+.rateCount {
+    font-size: 12px;
+    color: #777;
+    margin-left: 5px;
+}
+
+.priceBar {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.oldPrice {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.actionButton {
+    margin-bottom: 15px;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btnFlex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.searchRow {
+    margin-bottom: 20px;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px 40px; /* Add padding to accommodate the icon */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 10px; /* Adjust icon position */
+    color: #888; /* Color of the search icon */
+}

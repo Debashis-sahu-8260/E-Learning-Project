@@ -78,10 +78,42 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Create a new product
+// Create a new product (course)
 router.post("/", async (req, res) => {
   try {
-    let product = await Product.create(req.body);
+    const {
+      title,
+      price,
+      category,
+      sub_category,
+      topic,
+      author,
+      date,
+      image,
+      qty,
+      level,
+      details,
+    } = req.body;
+
+    // Validate required fields
+    if (!title || !price || !category || !sub_category || !topic || !author || !date || !image || !qty || !level || !details) {
+      return res.status(400).send({ message: "All fields are required" });
+    }
+
+    const product = await Product.create({
+      title,
+      price,
+      category,
+      sub_category,
+      topic,
+      author,
+      date: new Date(date), // Make sure date is in correct format
+      image,
+      qty,
+      level,
+      details,
+    });
+
     return res.status(201).send(product); // Return 201 Created
   } catch (err) {
     return res.status(500).send({ message: "Error creating product: " + err.message });

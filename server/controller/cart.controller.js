@@ -15,7 +15,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.delete("/", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const userId = mongoose.Types.ObjectId(req.body.userId);
     const productId = mongoose.Types.ObjectId(req.body.productId);

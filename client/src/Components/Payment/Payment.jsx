@@ -7,15 +7,18 @@ import CircularProgress from "@mui/material/CircularProgress";
 const Payment = () => {
   const [price, setPrice] = useState(0);
   const [loading, setLoading] = useState(false);
-
+  
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token")) || null;
     if (token) {
       axios
-        .get(`https://udemy-vr4p.onrender.com/cart/${token?.user?._id}`)
+        .get(`http://localhost:8080/cart/${token.user._id}`) // Updated URL
         .then(({ data }) => {
           const total = data.reduce((acc, el) => acc + el.productId.price, 0);
           setPrice(total);
+        })
+        .catch((error) => {
+          console.error("Error fetching cart data:", error);
         });
     }
   }, []);

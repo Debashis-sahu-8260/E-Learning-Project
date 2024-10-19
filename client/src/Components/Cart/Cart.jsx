@@ -20,8 +20,9 @@ export const CartPage = () => {
 
     if (token && token.user && token.user._id) {
       axios
-        .get(`https://udemy-vr4p.onrender.com/cart/${token.user._id}`)
+        .get(`http://localhost:8080/cart/${token.user._id}`)
         .then(({ data }) => {
+          console.log(data); // Log the fetched data
           loading.current = false;
           setData([...data]);
         })
@@ -36,13 +37,15 @@ export const CartPage = () => {
   }, []);
 
   const handleDelete = (productId) => {
-    setData((prevData) => prevData.filter((el) => el.productId._id !== productId));
-    axios.delete(`https://udemy-vr4p.onrender.com/cart/${user._id}/${productId}`)
+    axios.delete(`http://localhost:8080/cart/${productId}`)
+      .then(() => {
+        setData((prevData) => prevData.filter((el) => el.productId?._id !== productId));
+      })
       .catch((error) => console.error("Error deleting item:", error));
   };
 
   const TotalPrice = () => {
-    const total = data.reduce((acc, el) => acc + (el.productId.price || 0), 0);
+    const total = data.reduce((acc, el) => acc + (el.productId?.price || 0), 0);
     return <div>₹{total}</div>;
   };
 
@@ -56,50 +59,57 @@ export const CartPage = () => {
           ) : (
             <div className={style.cartItems}>
               <p>Courses in Cart</p>
-              <div className={style.cartItemsList}>
-                {data.map((el) => (
-                  <div key={el.productId._id} className={style.cartItem}>
-                    <div className={style.cartItemContainer}>
-                      <div className={style.productImg}>
-                        <img src={el.productId.image || "default_image_url.jpg"} alt={el.productId.title} />
-                        <div>
-                          <h4 className={style.productTitle}>{el.productId.title}</h4>
-                          <p className={style.productAuthor}>{el.productId.author}</p>
-                        </div>
-                      </div>
-                      <div className={style.productDetails}>
-                        <div className={style.productExtras}>
-                          <button className={style.bestsellerBadge}>Bestseller</button>
-                          <div className={style.ratingSection}>
-                            <span className={style.ratingValue}>{el.productId.rating || 4.5}</span>
-                            <Rating
-                              name="read-only"
-                              size="small"
-                              precision={0.5}
-                              value={el.productId.rating || 4.5}
-                              readOnly
-                            />
+              {data.length === 0 ? (
+                <p>Your cart is empty.</p>
+              ) : (
+                <div className={style.cartItemsList}>
+                  {data.map((el) => (
+                    <div key={el.productId?._id} className={style.cartItem}>
+                      <div className={style.cartItemContainer}>
+                        <div className={style.productImg}>
+                          <img 
+                            src={el.productId?.image || "default_image_url.jpg"} 
+                            alt={el.productId?.title || "Default Title"} 
+                          />
+                          <div>
+                            <h4 className={style.productTitle}>{el.productId?.title || "Default Title"}</h4>
+                            <p className={style.productAuthor}>{el.productId?.author || "Unknown Author"}</p>
                           </div>
                         </div>
-                        <ul className={style.productInfoList}>
-                          <li>2.5 total hours</li>
-                          <li>33 lectures</li>
-                          <li>{el.productId.level}</li>
-                        </ul>
-                        <div className={style.priceSection}>
-                          <h3 className={style.productPrice}>Rs. ₹{el.productId.price}</h3>
-                          <div className={style.actionsSection}>
-                            <DeleteForeverIcon 
-                              onClick={() => handleDelete(el.productId._id)} 
-                              style={{ cursor: 'pointer' }} 
-                            />
+                        <div className={style.productDetails}>
+                          <div className={style.productExtras}>
+                            <button className={style.bestsellerBadge}>Bestseller</button>
+                            <div className={style.ratingSection}>
+                              <span className={style.ratingValue}>{el.productId?.rating || 4.5}</span>
+                              <Rating
+                                name="read-only"
+                                size="small"
+                                precision={0.5}
+                                value={el.productId?.rating || 4.5}
+                                readOnly
+                              />
+                            </div>
+                          </div>
+                          <ul className={style.productInfoList}>
+                            <li>2.5 total hours</li>
+                            <li>33 lectures</li>
+                            <li>{el.productId?.level || "N/A"}</li>
+                          </ul>
+                          <div className={style.priceSection}>
+                            <h3 className={style.productPrice}>Rs. ₹{el.productId?.price || 0}</h3>
+                            <div className={style.actionsSection}>
+                              <DeleteForeverIcon 
+                                onClick={() => handleDelete(el.productId?._id)} 
+                                style={{ cursor: 'pointer' }} 
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>

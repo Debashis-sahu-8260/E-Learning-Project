@@ -78,22 +78,24 @@ export const SuggestionCard = ({ title, data, category }) => {
 
   return (
     <div className="tec-cont">
-      <div>
-        <h2>{title}</h2>
-        <div className="prod-cont">
-          {/* <MultiItemCarousel> Students are viewing */}
-          {products.map((el) => (
-            <LightTooltip
-              arrow
-              placement="right"
-              title={<PopperCard data={el} />}
-            >
-              <ProdCard data={el} />
-            </LightTooltip>
-          ))}
-          {/* </MultiItemCarousel> */}
-        </div>
-      </div>
+  <div>
+    <h2>{title}</h2>
+    <div className="prod-cont">
+      {products.map((el) => (
+        <LightTooltip
+          arrow
+          placement="right"
+          title={<PopperCard data={el} />}
+          key={el.id} // Ensure you have a unique key for each element
+        >
+          <div className="prod-card">
+            <ProdCard data={el} />
+          </div>
+        </LightTooltip>
+      ))}
     </div>
+  </div>
+</div>
+
   );
 };

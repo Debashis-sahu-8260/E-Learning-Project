@@ -34,7 +34,7 @@ const Banner = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios
-      .get("https://udemy-vr4p.onrender.com/courses")
+      .get("http://localhost:8080/courses")
       .then(({ data }) => {
         // console.log(data);
         loading.current = false;
@@ -51,8 +51,8 @@ const Banner = () => {
           <div
             className="bannercard"
             style={{
-              marginLeft:"3.5rem",
-              marginTop:"4rem",
+              marginLeft: "3.5rem",
+              marginTop: "4rem",
               background: "white",
               padding: "20px",
               borderRadius: "10px",
@@ -124,18 +124,12 @@ const Banner = () => {
                 </div>
                 <div className="skill-hub">
                   <div className="skill-desc">
-                    <h2>Expand your career opportunities with Python</h2>
+                    <h2>Unlock New Career Opportunities with Our Courses</h2>
                     <p>
-                      Take one of Udemy’s range of Python courses and learn how
-                      to code using this incredibly useful language. Its simple
-                      syntax and readability makes Python perfect for Flask,
-                      Django, data science, and machine learning. You’ll learn
-                      how to build everything from games to sites to apps.
-                      Choose from a range of courses that will appeal to both
-                      beginners and advanced developers alike.
+                      Explore E-learning's diverse selection of courses designed to elevate your skills and expand your career potential. Whether you’re a complete beginner or an experienced developer, our programs offer something for everyone. Choose from a variety of courses tailored to your skill level, and start creating everything from interactive games to dynamic websites and innovative apps. Join us today and take the first step towards mastering the skills that will set you apart in the tech industry!
                     </p>
                     <Link className="skill-titl-btn" to={"#"}>
-                      <span>Explore Python</span>
+                      <span>Explore All Courses</span>
                     </Link>
                   </div>
                   <div className="prod-cont">
@@ -145,7 +139,9 @@ const Banner = () => {
                         placement="right"
                         title={<PopperCard data={el} />}
                       >
-                        <ProdCard data={el} />
+                        <div className="prod-card">
+                          <ProdCard data={el} />
+                        </div>
                       </LightTooltip>
                     ))}
                   </div>
@@ -153,18 +149,7 @@ const Banner = () => {
               </div>
             </div>
           </section>
-          <section>
-            <SuggestionCard
-              title={"Popular for advancing Web Developers"}
-              data={products}
-              category={"It & Software"}
-            />
-            <SuggestionCard
-              title={"Popul in Marketing"}
-              data={products}
-              category={"Marketing"}
-            />
-          </section>
+
 
           <section>
             <TechCard />

@@ -34,7 +34,7 @@ export const Header = () => {
     }
     if (token != null)
       axios
-        .get(`https://udemy-vr4p.onrender.com/cart/${token?.user?._id}`)
+        .get(`http://localhost:8080/cart/${token?.user?._id}`)
         .then(({ data }) => {
           dispatch(addToCart(data.length));
         });
@@ -77,13 +77,7 @@ export const Header = () => {
             </Link>
           </div>
 
-          {user?.user && (
-            <div>
-              <Link className="linkstyle" to={"#"}>
-                <span className="nav-span">My learning</span>
-              </Link>
-            </div>
-          )}
+        
           {user?.user && (
             <div>
               <Link to={"/wishlist"}>
@@ -143,15 +137,7 @@ export const Header = () => {
               </Link>
             </div>
           )}
-          {!user?.user && (
-            <div>
-              <Link to={"#"}>
-                <button className="lang">
-                  <LanguageIcon />
-                </button>
-              </Link>
-            </div>
-          )}
+         
         </div>
 
         {/* Logout Confirmation Modal */}

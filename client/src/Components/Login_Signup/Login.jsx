@@ -1,51 +1,52 @@
 import style from "./login.module.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ColorButton } from "../ProdCard/popperprodcard";
 import { useDispatch, useSelector } from "react-redux";
 import { authFunction } from "../../Redux/login/action";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import GoogleIcon from "@mui/icons-material/Google";
 import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from "jwt-decode"; // Ensure this is imported correctly
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const [userdata, setUser] = useState({ email: "", password: "" });
   const { user, loading, error } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...userdata, [name]: value });
   };
 
-  // Redirect to homepage if login is successful
-  if (user.token) {
-    return <Navigate to={"/"} />;
-  }
-
   const handleGoogleLoginSuccess = async (credentialResponse) => {
     try {
-      // Decode the JWT token to get user details.
       const decoded = jwtDecode(credentialResponse.credential);
-      const { name, email, sub } = decoded; // 'sub' is typically the unique user ID from Google
+      const { email, sub } = decoded;
 
-      // Create a user object for login
       const googleUserData = {
         email,
-        googleId: sub, // Use googleId to match the database field if applicable
+        googleId: sub,
       };
 
-      console.log("Google user data for login:", googleUserData);
-
-      // Dispatch the login function with Google user data
-      const URL = "https://udemy-vr4p.onrender.com/join/google-login"; // Ensure this is the correct endpoint for Google login
+      const URL = "http://localhost:8080/join/login-popup";
       dispatch(authFunction(googleUserData, URL));
     } catch (error) {
       console.error("Error decoding Google token:", error);
     }
   };
+
+  useEffect(() => {
+    if (user && user.token) {
+      if (user.user.name === "ADMIN") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    }
+  }, [user, navigate]);
 
   return (
     <div className={style.container}>
@@ -77,7 +78,7 @@ const Login = () => {
 
           <ColorButton
             onClick={() => {
-              const URL = "https://udemy-vr4p.onrender.com/join/login-popup";
+              const URL = "http://localhost:8080/join/login-popup";
               dispatch(authFunction(userdata, URL));
             }}
             id="login_input"
@@ -85,8 +86,6 @@ const Login = () => {
           >
             {loading ? <CircularProgress style={{ color: "white" }} /> : "Log in"}
           </ColorButton>
-
-
         </div>
 
         <div className={style.login_org}>
@@ -97,12 +96,13 @@ const Login = () => {
             </span>
           </p>
         </div>
+
         <GoogleLogin
           onSuccess={handleGoogleLoginSuccess}
           onError={() => {
             console.log('Login Failed');
           }}
-          style={{ marginTop: "10px", width: "100%" }} // Set width to 100%
+          style={{ marginTop: "10px", width: "100%" }}
         />
       </div>
     </div>
