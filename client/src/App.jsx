@@ -10,7 +10,7 @@ export const App = () => {
   return (
     <GoogleOAuthProvider clientId="1008450012110-9p26l4gn530kuvs05qefgam7urgepggm.apps.googleusercontent.com">
     <div className="main-cont">
-      <Favicon url="https://cdn-icons-png.flaticon.com/512/395/395837.png" />
+      <Favicon url="https://poltekapp.ac.id/wp-content/uploads/2021/04/elearning.png" />
       <AllRoutes />
     </div>
     </GoogleOAuthProvider>
