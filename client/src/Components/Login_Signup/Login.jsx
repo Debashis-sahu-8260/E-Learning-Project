@@ -1,5 +1,5 @@
-import style from "./login.module.css";
 import React, { useState, useEffect } from "react";
+import style from "./login.module.css";
 import { ColorButton } from "../ProdCard/popperprodcard";
 import { useDispatch, useSelector } from "react-redux";
 import { authFunction } from "../../Redux/login/action";
@@ -9,9 +9,15 @@ import CircularProgress from "@mui/material/CircularProgress";
 import GoogleIcon from "@mui/icons-material/Google";
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import TextField from "@mui/material/TextField";
 
 const Login = () => {
   const [userdata, setUser] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
   const { user, loading, error } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,6 +25,10 @@ const Login = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...userdata, [name]: value });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
   };
 
   const handleGoogleLoginSuccess = async (credentialResponse) => {
@@ -61,19 +71,38 @@ const Login = () => {
               <p>Check your email and password or create an account.</p>
             </Alert>
           )}
-          <input
+          <TextField
+            variant="outlined"
+            fullWidth
+            margin="normal"
             onChange={handleChange}
             name="email"
             type="email"
             placeholder="Email"
             className={style.login_pw}
           />
-          <input
+
+          <TextField
+            variant="outlined"
+            fullWidth
+            margin="normal"
             onChange={handleChange}
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             className={style.login_pw}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={togglePasswordVisibility}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
 
           <ColorButton
